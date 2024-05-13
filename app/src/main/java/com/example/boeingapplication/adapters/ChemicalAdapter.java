@@ -1,4 +1,4 @@
-package com.example.boeingapplication;
+package com.example.boeingapplication.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.boeingapplication.model.ChemicalItem;
+import com.example.boeingapplication.R;
+import com.example.boeingapplication.main_activitys.BinCenters;
 
 import java.util.List;
 

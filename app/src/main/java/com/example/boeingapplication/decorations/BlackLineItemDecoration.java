@@ -1,4 +1,4 @@
-package com.example.boeingapplication;
+package com.example.boeingapplication.decorations;
 
 import android.content.Context;
 import android.graphics.Canvas;

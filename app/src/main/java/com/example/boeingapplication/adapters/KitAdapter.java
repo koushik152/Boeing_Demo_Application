@@ -1,4 +1,4 @@
-package com.example.boeingapplication;
+package com.example.boeingapplication.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.boeingapplication.model.KitItem;
+import com.example.boeingapplication.R;
 
 import java.util.List;
 

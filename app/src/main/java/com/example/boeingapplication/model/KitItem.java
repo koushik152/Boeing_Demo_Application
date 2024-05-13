@@ -1,18 +1,15 @@
-package com.example.boeingapplication;
+package com.example.boeingapplication.model;
 
-public class BinItem {
-    private final int imageResourceId;
-    private final String text;
+public class KitItem {
+    private int imageResourceId;
+    private String text;
 
-
-    public BinItem(int imageResourceId, String text) {
+    public KitItem(int imageResourceId, String text) {
         this.imageResourceId = imageResourceId;
         this.text = text;
     }
 
-
     public int getImageResourceId() {
-
         return imageResourceId;
     }
 

@@ -1,14 +1,15 @@
-package com.example.boeingapplication;
+package com.example.boeingapplication.adapters;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.boeingapplication.model.BinCenter;
+import com.example.boeingapplication.R;
 
 import java.util.List;
 

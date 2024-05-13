@@ -13,21 +13,21 @@
         android:theme="@style/Theme.BoeingApplication"
         tools:targetApi="31">
         <activity
-            android:name=".Acfr_Activity"
+            android:name=".main_activitys.Acfr_Activity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".BinCenters"
+            android:name=".main_activitys.BinCenters"
             android:exported="true">
         </activity>
         <activity
-            android:name=".Create_Account_Activity"
+            android:name=".main_activitys.Create_Account_Activity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".Login_Activity"
+            android:name=".main_activitys.Login_Activity"
             android:exported="true"
             android:launchMode="singleTask">
             <intent-filter>
@@ -37,19 +37,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Kit_Activity"
+            android:name=".main_activitys.Kit_Activity"
             android:exported="true" />
         <activity
-            android:name=".Settings_Activity"
+            android:name=".main_activitys.Settings_Activity"
             android:exported="true" />
         <activity
-            android:name=".Bin_Activity"
+            android:name=".main_activitys.Bin_Activity"
             android:exported="true" />
         <activity
-            android:name=".Chemical_Activity"
+            android:name=".main_activitys.Chemical_Activity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main_activitys.MainActivity"
             android:exported="true" />
     </application>
 

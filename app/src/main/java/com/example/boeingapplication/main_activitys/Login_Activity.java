@@ -1,4 +1,4 @@
-package com.example.boeingapplication;
+package com.example.boeingapplication.main_activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.boeingapplication.R;
+import com.example.boeingapplication.main_activitys.Bin_Activity;
+import com.example.boeingapplication.main_activitys.Create_Account_Activity;
 
 public class Login_Activity extends AppCompatActivity {
     EditText edusername,edpassword;
@@ -41,7 +41,7 @@ trouble=findViewById(R.id.trouble);
 trouble.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        Intent intent=new Intent(getApplicationContext(),Create_Account_Activity.class);
+        Intent intent=new Intent(getApplicationContext(), Create_Account_Activity.class);
         startActivity(intent);
     }
 });

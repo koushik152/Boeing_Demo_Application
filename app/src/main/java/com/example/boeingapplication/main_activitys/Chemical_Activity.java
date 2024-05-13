@@ -1,4 +1,4 @@
-package com.example.boeingapplication;
+package com.example.boeingapplication.main_activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,54 +6,49 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.boeingapplication.adapters.ChemicalAdapter;
+import com.example.boeingapplication.model.ChemicalItem;
+import com.example.boeingapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kit_Activity extends AppCompatActivity {
+public class Chemical_Activity extends AppCompatActivity {
     BottomNavigationView bnView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kit);
+        setContentView(R.layout.activity_chemical);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns
+        List<ChemicalItem> chemicalItemList = createChemicalItemList();
+        ChemicalAdapter adapter = new ChemicalAdapter(chemicalItemList,this);
+        recyclerView.setAdapter(adapter);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
         bnView = findViewById(R.id.bnView);
-        bnView.setSelectedItemId(R.id.kit);
+        bnView.setSelectedItemId(R.id.chemical);
         bnView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
-        // kit
-
-        RecyclerView recyclerView = findViewById(R.id.kitrecyclerView);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(layoutManager);
-
-
-        List<KitItem> kitItem = prepareData();
-
-
-        KitAdapter adapter = new KitAdapter(kitItem);
-        recyclerView.setAdapter(adapter);
-
-
         bnView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+
                 int currentSelectedItemId = bnView.getSelectedItemId();
+
 
                 Intent intent;
                 int id = item.getItemId();
@@ -82,9 +77,13 @@ public class Kit_Activity extends AppCompatActivity {
                     return true;
                 }
 
+
             }
 
+
         });
+
+
     }
     @Override
     public void onBackPressed() {
@@ -96,18 +95,29 @@ public class Kit_Activity extends AppCompatActivity {
         finish();
     }
 
-
     private void overridePendingTransition(int slideOutRight) {
     }
-    private List<KitItem> prepareData() {
-        List<KitItem> kitItem = new ArrayList<>();
-        // Add items to the list (image resource ID and text)
-        kitItem.add(new KitItem(R.drawable.kit_one, "Kit Check"));
-        kitItem.add(new KitItem(R.drawable.kit_two, "Kit Filling"));
-        kitItem.add(new KitItem(R.drawable.kit_three, "Kits"));
-        kitItem.add(new KitItem(R.drawable.kit_four, "Dashboard"));
-        // Add more items as needed
-        return kitItem;
-    }
-}
 
+    private List<ChemicalItem> createChemicalItemList() {
+        List<ChemicalItem> chemicalItemList = new ArrayList<>();
+
+
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_one, "Chemical Details Info"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_two, "Chemicals On Hand"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_three, "Chemical Recieving"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_four, "Chemical Consumption"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_five, "Scan History"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_six, "Chemical Scrap Request"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_seven, "Scrap Approval"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_eight, "Scrap History"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_nine, "View Certification"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_ten, "Work In Progress"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_eleven, "Bin To Bin Transfer"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_twelve, "Force Bin Replenishment"));
+        chemicalItemList.add(new ChemicalItem(R.drawable.image_thirteen, "Dashboard"));
+
+
+        return chemicalItemList;
+    }
+
+}

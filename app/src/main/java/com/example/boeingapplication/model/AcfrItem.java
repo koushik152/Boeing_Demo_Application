@@ -1,4 +1,4 @@
-package com.example.boeingapplication;
+package com.example.boeingapplication.model;
 
 public class AcfrItem {
     private String scanCode;
