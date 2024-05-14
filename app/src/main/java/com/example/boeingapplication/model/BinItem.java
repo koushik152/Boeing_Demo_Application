@@ -1,5 +1,5 @@
 package com.example.boeingapplication.model;
-//suresh ramesh ganesh
+
 public class BinItem {
     private final int imageResourceId;
     private final String text;
