@@ -1,25 +1,68 @@
 package com.example.boeingapplication.main_activitys;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.boeingapplication.R;
+import com.example.boeingapplication.adapters.SettingAdapter;
+import com.example.boeingapplication.model.SettingItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Settings_Activity extends AppCompatActivity {
 BottomNavigationView bnView;
+    ImageView imageView;
+    private static final int REQUEST_PICK_IMAGE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+       imageView = findViewById(R.id.user_image);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open gallery here
+                openGallery();
+            }
+        });
+
+
+
+
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        List<SettingItem> settingItemList = createSettingItemList();
+        SettingAdapter adapter1 = new SettingAdapter(settingItemList);
+        recyclerView.setAdapter(adapter1);
+
+
+
+
+
+
+
+
+
 
 
         View decorView = getWindow().getDecorView();
@@ -62,6 +105,28 @@ BottomNavigationView bnView;
 
         });
     }
+
+
+    //open gallery method
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_PICK_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            // Handle the selected image here
+            Uri selectedImageUri = data.getData();
+            imageView.setImageURI(selectedImageUri);
+
+        }
+    }
+
+
+
+
     @Override
     public void onBackPressed() {
 
@@ -75,5 +140,26 @@ BottomNavigationView bnView;
 
     private void overridePendingTransition(int slideOutRight) {
     }
+
+
+
+
+
+
+    private List<SettingItem> createSettingItemList() {
+        List<SettingItem> settingItemList = new ArrayList<>();
+        settingItemList.add(new SettingItem(R.drawable.icon1, "Change Password",R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon2, "About",R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon3, "042531 - SAFRAN ELECTRICAL & POWER UK LTD SAFRAN POWER UK LTD",R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon4, "Face ID",R.drawable.toggle));
+        settingItemList.add(new SettingItem(R.drawable.icon5, "App Version",R.drawable.version));
+        settingItemList.add(new SettingItem(R.drawable.icon6, "Online Verification",R.drawable.toggle));
+        settingItemList.add(new SettingItem(R.drawable.icon7, "Feedback",R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon8, "Privacy Policy",R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon8, "EU Data Privacy Notice",R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon9, "Terms of Use",R.drawable.arrow));
+        return settingItemList;
+    }
 }
+
 
