@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,12 +28,14 @@ import java.util.List;
 public class Settings_Activity extends AppCompatActivity {
 BottomNavigationView bnView;
     ImageView imageView;
+    TextView logoutTextView;
     private static final int REQUEST_PICK_IMAGE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
        imageView = findViewById(R.id.user_image);
+        logoutTextView=findViewById(R.id.logoutTextView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +43,14 @@ BottomNavigationView bnView;
                 openGallery();
             }
         });
+        logoutTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),Login_Activity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 
