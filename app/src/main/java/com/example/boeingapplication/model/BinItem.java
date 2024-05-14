@@ -4,7 +4,7 @@ public class BinItem {
     private final int imageResourceId;
     private final String text;
 
-
+//edited in github
     public BinItem(int imageResourceId, String text) {
         this.imageResourceId = imageResourceId;
         this.text = text;
