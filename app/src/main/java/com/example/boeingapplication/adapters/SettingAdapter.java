@@ -3,11 +3,13 @@ package com.example.boeingapplication.adapters;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.boeingapplication.R;
+import com.example.boeingapplication.main_activitys.Create_Account_Activity;
 import com.example.boeingapplication.main_activitys.Dialog_change_password;
 import com.example.boeingapplication.model.SettingItem;
 
@@ -67,6 +70,18 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
             });
 
         }
+        if (position == 2) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Open the new activity here
+                    showCustomDialog();
+                }
+
+
+            });
+
+        }
     }
 
 
@@ -76,5 +91,18 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
         return settingItems.size();
     }
 
+    private void showCustomDialog() {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_custom);
+        Button searchButton = dialog.findViewById(R.id.searchButton);
+        // Set up search button click listener if needed
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle search button click here
+            }
+        });
+        dialog.show();
 
+    }
 }
