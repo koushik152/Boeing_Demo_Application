@@ -63,7 +63,7 @@ BottomNavigationView bnView;
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<SettingItem> settingItemList = createSettingItemList();
-        SettingAdapter adapter1 = new SettingAdapter(settingItemList);
+        SettingAdapter adapter1 = new SettingAdapter(this,settingItemList);
         recyclerView.setAdapter(adapter1);
 
 
