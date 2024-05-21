@@ -1,23 +1,25 @@
 package com.example.boeingapplication.adapters;
 
 
-import static androidx.core.content.ContextCompat.startActivity;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.boeingapplication.R;
-import com.example.boeingapplication.main_activitys.Create_Account_Activity;
+import com.example.boeingapplication.main_activitys.Select_Customer;
 import com.example.boeingapplication.main_activitys.Dialog_change_password;
 import com.example.boeingapplication.model.SettingItem;
 
@@ -27,6 +29,10 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
 
     private List<SettingItem> settingItems;
     private Context context;
+
+
+
+
 
     public static class SettingViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
@@ -59,50 +65,88 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
         holder.textView.setText(settingItem.gettext());
         holder.imageView1.setImageResource(settingItem.getImageView1());
         // Add OnClickListener for the first item
+
         if (position == 0) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Open the new activity here
-                    Intent intent = new Intent(context, Dialog_change_password.class);
-                   context.startActivity(intent);
-                }
+            holder.itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, Dialog_change_password.class);
+                context.startActivity(intent);
             });
-
         }
+
         if (position == 2) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Open the new activity here
-                    showCustomDialog();
-                }
+            holder.itemView.setOnClickListener(v -> {
+                Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_select_customer);
 
 
+                EditText editTextSearch = dialog.findViewById(R.id.editTextSearch);
+                RecyclerView recyclerView = dialog.findViewById(R.id.recyclerViewcustomer);
+                ImageView imageViewClear = dialog.findViewById(R.id.imageViewClear);
+                TextView done=dialog.findViewById(R.id.buttonDone);
+                TextView cancel=dialog.findViewById(R.id.buttonCancel);
+                // Initialize RecyclerView and search functionality
+                Select_Customer.initRecyclerView(dialog.getContext(), recyclerView, editTextSearch,done,dialog,cancel);
+                // Set up the TextWatcher and clear button functionality
+                editTextSearch.addTextChangedListener(new android.text.TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        imageViewClear.setVisibility(s.length() > 0 ? View.VISIBLE : View.GONE);
+                    }
+
+                    @Override
+                    public void afterTextChanged(android.text.Editable s) {}
+                });
+
+
+
+
+
+
+                imageViewClear.setOnClickListener(view -> {
+                    editTextSearch.setText("");
+                    imageViewClear.setVisibility(View.GONE);
+                });
+
+
+                // Set the custom background for the dialog
+                dialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog_background);
+
+
+                // Adjust the size of the dialog
+                WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+                layoutParams.copyFrom(dialog.getWindow().getAttributes());
+                layoutParams.width =900 ; // Set the width to 600 pixels
+                layoutParams.height = 1400; // Set the height to 800 pixels
+                layoutParams.gravity = Gravity.CENTER; // Center the dialog on the screen
+
+                RecyclerView recyclerView1 = dialog.findViewById(R.id.recyclerViewcustomer);
+                EditText searchInput = dialog.findViewById(R.id.editTextSearch);
+                // Assuming you have an EditText with this id
+                Select_Customer.initRecyclerView(dialog.getContext(), recyclerView1, searchInput,done,dialog,cancel);
+
+
+
+                dialog.show();
+                dialog.getWindow().setAttributes(layoutParams); // Apply the new attributes
+                dialog.setCanceledOnTouchOutside(false);
             });
 
         }
+
+
     }
-
-
 
     @Override
     public int getItemCount() {
         return settingItems.size();
     }
 
-    private void showCustomDialog() {
-        Dialog dialog = new Dialog(context);
-        dialog.setContentView(R.layout.dialog_custom);
-        Button searchButton = dialog.findViewById(R.id.searchButton);
-        // Set up search button click listener if needed
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle search button click here
-            }
-        });
-        dialog.show();
 
-    }
+
+
+
+
 }

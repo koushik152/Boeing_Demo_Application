@@ -1,33 +1,39 @@
 package com.example.boeingapplication.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.boeingapplication.R;
+import com.example.boeingapplication.main_activitys.Select_Customer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.UserViewHolder> {
 
     private Context context;
     private List<String> userList;
+    private int selectedPosition = -1;
     private List<String> userListFull; // For search filtering
     private OnUserClickListener onUserClickListener;
 
 
 
     public interface OnUserClickListener {
-        void onUserClick(String user,int position);
+        void onItemClick(String user, int position);
     }
 
-    public UserAdapter(Context context, List<String> userList, OnUserClickListener onUserClickListener) {
+
+
+    public CustomerAdapter(Context context, List<String> userList, OnUserClickListener onUserClickListener) {
         this.context = context;
         this.userList = userList;
         this.userListFull = new ArrayList<>(userList); // Initialize the full list
@@ -45,11 +51,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         String user = userList.get(position);
         holder.textViewUser.setText(user);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onUserClickListener.onUserClick(user,position);
-            }
+        // Show/hide the right mark based on selection
+        if (position == selectedPosition) {
+            holder.imageViewRightMark.setVisibility(View.VISIBLE);
+        } else {
+            holder.imageViewRightMark.setVisibility(View.GONE);
+        }
+
+        holder.itemView.setOnClickListener(v -> {
+            // Update the selected position
+            selectedPosition = holder.getAdapterPosition();
+            notifyDataSetChanged();
+            if(onUserClickListener !=null)// Notify adapter to refresh the views
+           onUserClickListener.onItemClick(user, holder.getAdapterPosition());
         });
     }
 
@@ -74,11 +88,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     }
 
     static class UserViewHolder extends RecyclerView.ViewHolder {
+        public View imageViewRightMark;
         TextView textViewUser;
 
         UserViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewUser = itemView.findViewById(R.id.textViewUser);
+            imageViewRightMark = itemView.findViewById(R.id.imageViewRightMark);
         }
     }
 }

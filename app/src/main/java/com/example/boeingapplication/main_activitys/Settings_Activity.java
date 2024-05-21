@@ -1,5 +1,7 @@
 package com.example.boeingapplication.main_activitys;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,8 +9,10 @@ import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,16 +30,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Settings_Activity extends AppCompatActivity {
-BottomNavigationView bnView;
+    BottomNavigationView bnView;
     ImageView imageView;
     TextView logoutTextView;
     private static final int REQUEST_PICK_IMAGE = 1;
+    private RecyclerView recyclerView;
+    private static SettingAdapter adapter1;
+    private static List<SettingItem> settingItemList;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-       imageView = findViewById(R.id.user_image);
-        logoutTextView=findViewById(R.id.logoutTextView);
+
+        imageView = findViewById(R.id.user_image);
+        logoutTextView = findViewById(R.id.logoutTextView);
+
+
+
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,34 +63,21 @@ BottomNavigationView bnView;
         logoutTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),Login_Activity.class);
+                Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
                 startActivity(intent);
             }
         });
 
 
-
-
-
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        List<SettingItem> settingItemList = createSettingItemList();
-        SettingAdapter adapter1 = new SettingAdapter(this,settingItemList);
+        settingItemList = createSettingItemList();
+        adapter1 = new SettingAdapter(this, settingItemList);
         recyclerView.setAdapter(adapter1);
-
-
-
-
-
-
-
-
-
 
 
         View decorView = getWindow().getDecorView();
@@ -99,13 +103,12 @@ BottomNavigationView bnView;
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.slide_out_right);
                     return true;
-                } else if (id==R.id.setting) {
+                } else if (id == R.id.setting) {
                     intent = new Intent(getApplicationContext(), Settings_Activity.class);
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.slide_out_right);
                     return true;
-                }
-                else{
+                } else {
                     intent = new Intent(getApplicationContext(), Kit_Activity.class);
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.slide_out_right);
@@ -136,8 +139,6 @@ BottomNavigationView bnView;
     }
 
 
-
-
     @Override
     public void onBackPressed() {
 
@@ -153,24 +154,47 @@ BottomNavigationView bnView;
     }
 
 
-
-
-
-
     private List<SettingItem> createSettingItemList() {
         List<SettingItem> settingItemList = new ArrayList<>();
-        settingItemList.add(new SettingItem(R.drawable.icon1, "Change Password",R.drawable.arrow));
-        settingItemList.add(new SettingItem(R.drawable.icon2, "About",R.drawable.arrow));
-        settingItemList.add(new SettingItem(R.drawable.icon3, "042531 - SAFRAN ELECTRICAL & POWER UK LTD SAFRAN POWER UK LTD",R.drawable.arrow));
-        settingItemList.add(new SettingItem(R.drawable.icon4, "Face ID",R.drawable.toggle));
-        settingItemList.add(new SettingItem(R.drawable.icon5, "App Version",R.drawable.version));
-        settingItemList.add(new SettingItem(R.drawable.icon6, "Online Verification",R.drawable.toggle));
-        settingItemList.add(new SettingItem(R.drawable.icon7, "Feedback",R.drawable.arrow));
-        settingItemList.add(new SettingItem(R.drawable.icon8, "Privacy Policy",R.drawable.arrow));
-        settingItemList.add(new SettingItem(R.drawable.icon8, "EU Data Privacy Notice",R.drawable.arrow));
-        settingItemList.add(new SettingItem(R.drawable.icon9, "Terms of Use",R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon1, "Change Password", R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon2, "About", R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon3, "042531 - SAFRAN ELECTRICAL & POWER UK LTD SAFRAN POWER UK LTD", R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon4, "Face ID", R.drawable.toggle));
+        settingItemList.add(new SettingItem(R.drawable.icon5, "App Version", R.drawable.version));
+        settingItemList.add(new SettingItem(R.drawable.icon6, "Online Verification", R.drawable.toggle));
+        settingItemList.add(new SettingItem(R.drawable.icon7, "Feedback", R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon8, "Privacy Policy", R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon8, "EU Data Privacy Notice", R.drawable.arrow));
+        settingItemList.add(new SettingItem(R.drawable.icon9, "Terms of Use", R.drawable.arrow));
         return settingItemList;
     }
-}
 
+    private void showSelectCustomerDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_select_customer);
+
+        RecyclerView recyclerViewCustomer = dialog.findViewById(R.id.recyclerViewcustomer);
+        EditText editTextSearch = dialog.findViewById(R.id.editTextSearch);
+        ImageView imageViewClear = dialog.findViewById(R.id.imageViewClear);
+TextView buttondone=dialog.findViewById(R.id.buttonDone);
+        TextView buttonCancel = dialog.findViewById(R.id.buttonCancel);
+
+        Select_Customer.initRecyclerView(this, recyclerViewCustomer, editTextSearch,buttondone,dialog,buttonCancel);
+
+
+        dialog.show();
+
+    }
+
+    public static void updateSettingItem(String user) {
+        if (settingItemList != null && settingItemList.size() >= 3) {
+            settingItemList.get(2).setText(user);
+            adapter1.notifyItemChanged(2);
+
+        }
+
+
+
+    }
+}
 

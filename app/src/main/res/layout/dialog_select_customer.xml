@@ -1,6 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:background="@color/white">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/title"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <!-- RecyclerView and Search EditText -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Customer"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/searchlayout"
+    android:background="@drawable/change_password_change_button"
+
+    android:layout_below="@id/title"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="20dp"
+   android:paddingRight="20dp"
+    android:orientation="horizontal">
+    <EditText
+        android:id="@+id/editTextSearch"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#4E000000"
+        android:background="@android:color/white"
+        android:hint="Search"
+android:textColor="@color/black"
+        android:layout_margin="9dp"
+        android:inputType="text"/>
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="20dp"
+
+        android:src="@drawable/ic_clear"
+      android:gravity="center_vertical"
+        android:id="@+id/imageViewClear"
+        android:visibility="gone"
+
+        />
+
+</LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewcustomer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_above="@+id/button_layout"
+            android:layout_below="@id/searchlayout"
+            android:layout_marginBottom="70dp"/>
+
+        <!-- Done and Cancel Buttons -->
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:id="@+id/button_layout"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:layout_below="@id/recyclerViewcustomer"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        tools:ignore="NotSibling">
+
+        <TextView
+            android:id="@+id/buttonCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_border"
+            android:text="Cancel"
+            android:padding="12dp"
+            android:gravity="center"
+            android:textColor="#2FB4CF" />
+
+        <TextView
+            android:id="@+id/buttonDone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Done"
+            android:padding="12dp"
+            android:background="@drawable/button_border"
+            android:textColor="#2FB4CF" />
+    </LinearLayout>
+</RelativeLayout>
