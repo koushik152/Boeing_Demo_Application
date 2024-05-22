@@ -2,27 +2,21 @@ package com.example.boeingapplication.main_activitys;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.boeingapplication.R;
 import com.example.boeingapplication.adapters.CustomerAdapter;
-import com.example.boeingapplication.adapters.SettingAdapter;
 import com.example.boeingapplication.decorations.BlackLineItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Select_Customer  {
+public class SelectCustomer {
     private static CustomerAdapter adapter;
 
 
@@ -56,7 +50,7 @@ done.setOnClickListener(new View.OnClickListener() {
 
 
 
-                    Settings_Activity.updateSettingItem(user);
+                    SettingsActivity.updateSettingItem(user);
 
 dialog.cancel();
                 }

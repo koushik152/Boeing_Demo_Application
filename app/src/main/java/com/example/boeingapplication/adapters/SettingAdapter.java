@@ -13,14 +13,13 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.boeingapplication.R;
-import com.example.boeingapplication.main_activitys.Select_Customer;
-import com.example.boeingapplication.main_activitys.Dialog_change_password;
+import com.example.boeingapplication.main_activitys.SelectCustomer;
+import com.example.boeingapplication.main_activitys.Dialogchangepassword;
 import com.example.boeingapplication.model.SettingItem;
 
 import java.util.List;
@@ -68,7 +67,7 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
 
         if (position == 0) {
             holder.itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(context, Dialog_change_password.class);
+                Intent intent = new Intent(context, Dialogchangepassword.class);
                 context.startActivity(intent);
             });
         }
@@ -85,7 +84,7 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
                 TextView done=dialog.findViewById(R.id.buttonDone);
                 TextView cancel=dialog.findViewById(R.id.buttonCancel);
 
-                Select_Customer.initRecyclerView(dialog.getContext(), recyclerView, editTextSearch,done,dialog,cancel);
+                SelectCustomer.initRecyclerView(dialog.getContext(), recyclerView, editTextSearch,done,dialog,cancel);
 
                 editTextSearch.addTextChangedListener(new android.text.TextWatcher() {
                     @Override
@@ -123,7 +122,7 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
 
                 RecyclerView recyclerView1 = dialog.findViewById(R.id.recyclerViewcustomer);
                 EditText searchInput = dialog.findViewById(R.id.editTextSearch);
-                Select_Customer.initRecyclerView(dialog.getContext(), recyclerView1, searchInput,done,dialog,cancel);
+                SelectCustomer.initRecyclerView(dialog.getContext(), recyclerView1, searchInput,done,dialog,cancel);
 
 
 

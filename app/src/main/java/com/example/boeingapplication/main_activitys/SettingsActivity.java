@@ -1,6 +1,5 @@
 package com.example.boeingapplication.main_activitys;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +11,6 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +27,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Settings_Activity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
     BottomNavigationView bnView;
     ImageView imageView;
     TextView logoutTextView;
@@ -63,7 +61,7 @@ public class Settings_Activity extends AppCompatActivity {
         logoutTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -94,22 +92,22 @@ public class Settings_Activity extends AppCompatActivity {
 
                 if (id == R.id.chemical) {
 
-                    intent = new Intent(getApplicationContext(), Chemical_Activity.class);
+                    intent = new Intent(getApplicationContext(), ChemicalActivity.class);
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.slide_out_right);
                     return true;
                 } else if (id == R.id.bin) {
-                    intent = new Intent(getApplicationContext(), Bin_Activity.class);
+                    intent = new Intent(getApplicationContext(), BinActivity.class);
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.slide_out_right);
                     return true;
                 } else if (id == R.id.setting) {
-                    intent = new Intent(getApplicationContext(), Settings_Activity.class);
+                    intent = new Intent(getApplicationContext(), SettingsActivity.class);
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.slide_out_right);
                     return true;
                 } else {
-                    intent = new Intent(getApplicationContext(), Kit_Activity.class);
+                    intent = new Intent(getApplicationContext(), KitActivity.class);
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.slide_out_right);
                     return true;
@@ -143,7 +141,7 @@ public class Settings_Activity extends AppCompatActivity {
     public void onBackPressed() {
 
         super.onBackPressed();
-        Intent intent = new Intent(this, Login_Activity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
@@ -179,7 +177,7 @@ public class Settings_Activity extends AppCompatActivity {
 TextView buttondone=dialog.findViewById(R.id.buttonDone);
         TextView buttonCancel = dialog.findViewById(R.id.buttonCancel);
 
-        Select_Customer.initRecyclerView(this, recyclerViewCustomer, editTextSearch,buttondone,dialog,buttonCancel);
+        SelectCustomer.initRecyclerView(this, recyclerViewCustomer, editTextSearch,buttondone,dialog,buttonCancel);
 
 
         dialog.show();
