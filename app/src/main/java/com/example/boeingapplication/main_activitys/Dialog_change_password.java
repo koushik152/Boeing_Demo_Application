@@ -25,7 +25,6 @@ BottomNavigationView bnView;
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dialog_change_password);
-//screen
 
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(

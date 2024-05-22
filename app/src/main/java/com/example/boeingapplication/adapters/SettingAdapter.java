@@ -128,7 +128,7 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
 
 
                 dialog.show();
-                dialog.getWindow().setAttributes(layoutParams); // Apply the new attributes
+                dialog.getWindow().setAttributes(layoutParams);
                 dialog.setCanceledOnTouchOutside(false);
             });
 

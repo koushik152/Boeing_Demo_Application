@@ -39,7 +39,7 @@ public class ChemicalAdapter extends RecyclerView.Adapter<ChemicalAdapter.Chemic
     @NonNull
     @Override
     public ChemicalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflate the item layout and create a new view holder
+
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_chemical, parent, false);
         return new ChemicalViewHolder(view);
@@ -48,10 +48,10 @@ public class ChemicalAdapter extends RecyclerView.Adapter<ChemicalAdapter.Chemic
 
     @Override
     public void onBindViewHolder(@NonNull ChemicalViewHolder holder, int position) {
-        // Get the current ChemicalItem
+
         ChemicalItem chemicalItem = chemicalItems.get(position);
 
-        // Set the image resource and text
+
         holder.imageView.setImageResource(chemicalItem.getImageResourceId());
         holder.textView.setText(chemicalItem.getText());
         holder.itemView.setOnClickListener(v -> {

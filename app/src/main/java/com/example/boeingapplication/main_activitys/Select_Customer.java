@@ -71,7 +71,7 @@ dialog.cancel();
 
 
         recyclerView.setAdapter(adapter);
-// Set up the search functionality
+
 
         searchInput.addTextChangedListener(new android.text.TextWatcher() {
             @Override
@@ -80,8 +80,7 @@ dialog.cancel();
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 adapter.filter(s.toString());
-                // Show/hide clear button based on search text
-                // Handle cancel button click
+
                 cancel.setOnClickListener(v -> dialog.dismiss());
             }
 

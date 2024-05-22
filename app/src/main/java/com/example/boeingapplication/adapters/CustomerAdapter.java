@@ -22,7 +22,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.UserVi
     private Context context;
     private List<String> userList;
     private int selectedPosition = -1;
-    private List<String> userListFull; // For search filtering
+    private List<String> userListFull;
     private OnUserClickListener onUserClickListener;
 
 
@@ -36,7 +36,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.UserVi
     public CustomerAdapter(Context context, List<String> userList, OnUserClickListener onUserClickListener) {
         this.context = context;
         this.userList = userList;
-        this.userListFull = new ArrayList<>(userList); // Initialize the full list
+        this.userListFull = new ArrayList<>(userList);
         this.onUserClickListener = onUserClickListener;
     }
 
@@ -51,7 +51,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.UserVi
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         String user = userList.get(position);
         holder.textViewUser.setText(user);
-        // Show/hide the right mark based on selection
+
         if (position == selectedPosition) {
             holder.imageViewRightMark.setVisibility(View.VISIBLE);
         } else {
@@ -59,10 +59,10 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.UserVi
         }
 
         holder.itemView.setOnClickListener(v -> {
-            // Update the selected position
+
             selectedPosition = holder.getAdapterPosition();
             notifyDataSetChanged();
-            if(onUserClickListener !=null)// Notify adapter to refresh the views
+            if(onUserClickListener !=null)
            onUserClickListener.onItemClick(user, holder.getAdapterPosition());
         });
     }
