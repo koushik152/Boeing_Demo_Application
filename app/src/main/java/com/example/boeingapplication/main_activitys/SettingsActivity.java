@@ -187,7 +187,7 @@ TextView buttondone=dialog.findViewById(R.id.buttonDone);
     }
 
     public static void updateSettingItem(String user) {
-        if (settingItemList != null && settingItemList.size() >= 3) {
+        if (settingItemList != null ) {
             settingItemList.get(2).setText(user);
             adapter1.notifyItemChanged(2);
 

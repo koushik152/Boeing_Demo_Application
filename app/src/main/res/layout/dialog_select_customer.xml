@@ -55,10 +55,10 @@
 
             <ImageView
                 android:id="@+id/imageViewClear"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
 
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="13dp"
                 android:src="@drawable/ic_clear"
 
              android:visibility="gone"
@@ -70,7 +70,6 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/searchlayout"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="1dp"
             android:background="#000000" />
