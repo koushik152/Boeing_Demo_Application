@@ -72,17 +72,16 @@
             android:layout_height="1dp"
             android:layout_below="@id/searchlayout"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="1dp"
             android:background="#000000" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewcustomer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="40dp" />
 
-        <!-- Done and Cancel Buttons -->
+
 
     </LinearLayout>
     <LinearLayout
@@ -114,7 +113,7 @@
             android:text="Done"
 
             android:padding="12dp"
-            android:background="@drawable/button_border"
+            android:background="@drawable/button_border_done"
             android:textColor="#2FB4CF" />
     </LinearLayout>
 </RelativeLayout>
