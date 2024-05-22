@@ -4,75 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="16dp"
     android:background="@color/white">
 
     <LinearLayout
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/title"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <!-- RecyclerView and Search EditText -->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select Customer"
             android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="20dp"
+            android:text="Select Customer"
             android:textColor="@color/black"
-            android:layout_marginTop="10dp"/>
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/searchlayout"
-    android:background="@drawable/change_password_change_button"
+        <LinearLayout
+            android:id="@+id/searchlayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="15dp"
 
-    android:layout_below="@id/title"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="20dp"
-   android:paddingRight="20dp"
-    android:orientation="horizontal">
-    <EditText
-        android:id="@+id/editTextSearch"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
-        android:paddingLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:textColorHint="#4E000000"
-        android:background="@android:color/white"
-        android:hint="Search"
-android:textColor="@color/black"
-        android:layout_margin="9dp"
-        android:inputType="text"/>
-    <ImageView
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/change_password_change_button"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
-        android:src="@drawable/ic_clear"
-      android:gravity="center_vertical"
-        android:id="@+id/imageViewClear"
-        android:visibility="gone"
+            <EditText
+                android:id="@+id/editTextSearch"
+                android:layout_width="255dp"
+                android:layout_height="30dp"
 
-        />
+                android:layout_marginTop="5dp"
+                android:background="@android:color/white"
+                android:hint="Search"
+                android:inputType="text"
+                android:textColor="@color/black"
 
-</LinearLayout>
+                android:textColorHint="#4E000000" />
+
+            <ImageView
+                android:id="@+id/imageViewClear"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_clear"
+
+             android:visibility="gone"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/searchlayout"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:background="#000000" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewcustomer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_above="@+id/button_layout"
-            android:layout_below="@id/searchlayout"
-            android:layout_marginBottom="70dp"/>
+            android:layout_marginBottom="40dp" />
 
         <!-- Done and Cancel Buttons -->
 
@@ -81,15 +89,10 @@ android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
         android:id="@+id/button_layout"
-        android:layout_marginBottom="10dp"
         android:background="@color/white"
-        android:layout_below="@id/recyclerViewcustomer"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        tools:ignore="NotSibling">
+        android:layout_gravity="bottom">
 
         <TextView
             android:id="@+id/buttonCancel"
@@ -109,6 +112,7 @@ android:textColor="@color/black"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Done"
+
             android:padding="12dp"
             android:background="@drawable/button_border"
             android:textColor="#2FB4CF" />

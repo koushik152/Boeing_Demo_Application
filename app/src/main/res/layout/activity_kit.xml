@@ -17,7 +17,7 @@
         android:textStyle="bold"
         android:paddingTop="30dp"
         android:paddingBottom="20dp"
-        android:background="#227DC6" />
+        android:background="@drawable/toolbar_background" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/kitrecyclerView"

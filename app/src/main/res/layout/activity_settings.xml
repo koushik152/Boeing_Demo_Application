@@ -13,13 +13,14 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#227DC6"
+  android:background="@drawable/toolbar_background"
         android:gravity="center_horizontal"
         android:paddingTop="30dp"
         android:paddingBottom="15dp"
         android:text="Account Settings"
         android:textColor="@color/white"
         android:textSize="20dp"
+
         android:textStyle="bold" />
 
         <LinearLayout

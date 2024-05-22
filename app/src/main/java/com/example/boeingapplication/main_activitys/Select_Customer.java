@@ -38,20 +38,26 @@ public class Select_Customer  {
                 dialog.cancel();
             }
         });
-
+done.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(context, "Please Select a Customer", Toast.LENGTH_SHORT).show();
+    }
+});
 
         List<String> users = getUserList();
         adapter = new CustomerAdapter(context, users, (user, position) -> {
 
-            Toast.makeText(context, "select customer", Toast.LENGTH_SHORT).show();
             String selectedUserText=user.toString();
-            Toast.makeText(context, selectedUserText, Toast.LENGTH_SHORT).show();
             done.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
+
+
+
                     Settings_Activity.updateSettingItem(user);
-                    Toast.makeText(context, "done button clicked", Toast.LENGTH_SHORT).show();
+
 dialog.cancel();
                 }
             });
@@ -92,6 +98,9 @@ dialog.cancel();
         users.add("0010607784 - AIRBUS OPERATIONS GMBH AIRBUS-A");
         users.add("0010607879 - BOEING COMPANY , THE BOEING PHI ");
         users.add("0010607893 - BOEING AEROSTRUCTURES AUSTRALI BOEING AER");
+        users.add("0010607223 - ADAMS COMMUNICATION & ENGINEER ADAMS COMM");
+        users.add("0010607297 - LEONARDO SPA LEONARDO S");
+        users.add("0010607788 - AIRBUS OPERATIONS GMBH AIRBUS-A");
         users.add("0010607223 - ADAMS COMMUNICATION & ENGINEER ADAMS COMM");
         users.add("0010607297 - LEONARDO SPA LEONARDO S");
         users.add("0010607788 - AIRBUS OPERATIONS GMBH AIRBUS-A");

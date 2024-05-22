@@ -19,7 +19,7 @@
         android:layout_height="80dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="#227DC6"
+        android:background="@drawable/toolbar_background"
 
         >
 
