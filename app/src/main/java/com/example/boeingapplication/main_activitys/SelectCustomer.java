@@ -74,8 +74,12 @@ dialog.cancel();
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 adapter.filter(s.toString());
-
-                cancel.setOnClickListener(v -> dialog.dismiss());
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
             }
 
             @Override

@@ -54,14 +54,16 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.UserVi
         } else {
             holder.imageViewRightMark.setVisibility(View.GONE);
         }
+holder.itemView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        selectedPosition = holder.getAdapterPosition();
+        notifyDataSetChanged();
+        if(onUserClickListener !=null)
+            onUserClickListener.onItemClick(user, holder.getAdapterPosition());
+    }
+});
 
-        holder.itemView.setOnClickListener(v -> {
-
-            selectedPosition = holder.getAdapterPosition();
-            notifyDataSetChanged();
-            if(onUserClickListener !=null)
-           onUserClickListener.onItemClick(user, holder.getAdapterPosition());
-        });
     }
 
     @Override

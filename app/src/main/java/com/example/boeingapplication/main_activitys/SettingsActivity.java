@@ -167,22 +167,6 @@ public class SettingsActivity extends AppCompatActivity {
         return settingItemList;
     }
 
-    private void showSelectCustomerDialog() {
-        Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_select_customer);
-
-        RecyclerView recyclerViewCustomer = dialog.findViewById(R.id.recyclerViewcustomer);
-        EditText editTextSearch = dialog.findViewById(R.id.editTextSearch);
-        ImageView imageViewClear = dialog.findViewById(R.id.imageViewClear);
-TextView buttondone=dialog.findViewById(R.id.buttonDone);
-        TextView buttonCancel = dialog.findViewById(R.id.buttonCancel);
-
-        SelectCustomer.initRecyclerView(this, recyclerViewCustomer, editTextSearch,buttondone,dialog,buttonCancel);
-
-
-        dialog.show();
-
-    }
 
     public static void updateSettingItem(String user) {
         if (settingItemList != null ) {
