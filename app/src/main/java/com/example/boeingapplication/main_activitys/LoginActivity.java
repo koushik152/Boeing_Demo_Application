@@ -268,7 +268,8 @@ Button key=findViewById(R.id.key);
         ProfileDetailRequest request = new ProfileDetailRequest("json");
         Call<ProfileDetailResponse> call = commonService.getProfileDetail(
                 token,
-                "application/json","JSESSIONID="+
+                "application/json","bdsi-stg1-store.pivotree.io","keep-alive","no-cache" ,
+                        "JSESSIONID="+
 
                 jsessionId+".bdsi-stg-use1-app-01-p-stg1-app1",
                 request

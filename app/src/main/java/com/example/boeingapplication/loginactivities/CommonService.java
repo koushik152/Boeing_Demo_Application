@@ -23,6 +23,9 @@ public interface CommonService {
     Call<ProfileDetailResponse> getProfileDetail(
             @Header("m-service-token") String token,
             @Header("Content-Type") String contentType,
+            @Header("Host") String Host,
+            @Header("Connection") String Connection,
+            @Header("Cache-Control") String Cache_Control,
             @Header("Cookie") String cookie,
             @Body ProfileDetailRequest request
     );
