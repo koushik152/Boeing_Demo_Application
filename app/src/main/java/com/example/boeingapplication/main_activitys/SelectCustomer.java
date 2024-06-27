@@ -2,6 +2,7 @@ package com.example.boeingapplication.main_activitys;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -86,7 +87,6 @@ dialog.cancel();
             public void afterTextChanged(android.text.Editable s) {}
         });
     }
-
 
     private static List<String> getUserList() {
         List<String> users = new ArrayList<>();
