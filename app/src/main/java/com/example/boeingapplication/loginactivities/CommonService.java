@@ -21,12 +21,10 @@ public interface CommonService {
 
     @POST("rest/model/com/mobility/service/auth/MService/getProfileDetail")
     Call<ProfileDetailResponse> getProfileDetail(
-            @Header("m-service-token") String token,
             @Header("Content-Type") String contentType,
-            @Header("Host") String Host,
             @Header("Connection") String Connection,
             @Header("Cache-Control") String Cache_Control,
-            @Header("Cookie") String cookie,
+            @Header("m-service-token") String token,
             @Body ProfileDetailRequest request
     );
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.multidex.MultiDex;
@@ -45,10 +46,12 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
     private TextView Response;
+
+
     private CommonService commonService;
     private SharedPreferences sharedPreferences;
     private static final String PREFS_NAME = "com.example.apidemo.PREFS";
-    private static final String TOKEN_KEY = "m-service-token";
+    private static final String TOKEN_KEY = "null";
     private static final String JSESSIONID_KEY = "jsessionid";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +101,12 @@ Button key=findViewById(R.id.key);
             httpClient.addInterceptor(chain -> {
                 Request original = chain.request();
                 String token = sharedPreferences.getString(TOKEN_KEY, null);
+                String jsessionid=sharedPreferences.getString(JSESSIONID_KEY,null);
                 Request.Builder requestBuilder = original.newBuilder()
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json");
                 if (token != null) {
-                    requestBuilder.header("m-service-token", token);
-                }
+                    requestBuilder.header("Cookie","m-service-token ="+token);                }
                 Request request = requestBuilder
                         .method(original.method(), original.body())
                         .build();
@@ -195,13 +198,12 @@ Button key=findViewById(R.id.key);
                     Response.setText(displayText);
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.remove(TOKEN_KEY);
+                    editor.remove(JSESSIONID_KEY);
                     editor.apply();
                 } else {
                     handleErrorResponse(response);
                 }
             }
-            @Override
             public void onFailure(Call<LogoutResponse> call, Throwable t) {
                 t.printStackTrace();
                 Log.e("LogoutFailure", "Request failed: unable to give response " + t.getMessage(), t);
@@ -209,7 +211,6 @@ Button key=findViewById(R.id.key);
             }
         });
     }
-
 
 
 
@@ -262,20 +263,21 @@ Button key=findViewById(R.id.key);
 
 
     private void getProfileDetails() {
+        EditText tokenValueEditText = findViewById(R.id.tokenvalue);
+        String tokenvalues = tokenValueEditText.getText().toString();
+
         String token = sharedPreferences.getString(TOKEN_KEY, null);
+
         String jsessionId = sharedPreferences.getString(JSESSIONID_KEY, null);
 
         ProfileDetailRequest request = new ProfileDetailRequest("json");
         Call<ProfileDetailResponse> call = commonService.getProfileDetail(
-                token,
-                "application/json","bdsi-stg1-store.pivotree.io","keep-alive","no-cache" ,
-                        "JSESSIONID="+
-
-                jsessionId+".bdsi-stg-use1-app-01-p-stg1-app1",
+                "application/json","keep-alive","no-cache" ,
+                token, // Include the token here
                 request
         );
 
-        if (token != null   && jsessionId !=null) {
+        if (tokenvalues != null  ) {
             call.enqueue(new Callback<ProfileDetailResponse>() {
                 @Override
                 public void onResponse(Call<ProfileDetailResponse> call, Response<ProfileDetailResponse> response) {
